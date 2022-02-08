@@ -1,6 +1,6 @@
 
 from django.shortcuts import redirect, render
-from .forms import UserForm
+from .forms import UserForm,ProfileForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.forms import AuthenticationForm
 
@@ -45,3 +45,13 @@ def user_login(request):
         "form":form
     }
     return render(request,"users/login.html",context)
+
+
+def profile(request):
+    form_profile = ProfileForm()
+
+    context = {
+        "form_profile":form_profile
+    }
+    return render(request,"users/profile.html",context) 
+ 

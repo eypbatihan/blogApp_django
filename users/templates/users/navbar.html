@@ -19,10 +19,10 @@
           <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Logout</a>
         </li>  
          <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="">Profile</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'profile' %}">Profile</a>
         </li> 
          <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="">New Post</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'create' %}">New Post</a>
         </li> 
        {% else %} 
          <li class="nav-item">

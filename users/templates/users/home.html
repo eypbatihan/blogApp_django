@@ -3,6 +3,50 @@
 
 
 {% block content %}
-    <h1>Home page</h1>
-{% endblock content %}
+<div class="container">
+   
+     <h1 class="text-center">BATIHAN BLOG</h1>
+     <div class="row row-cols-3"> 
+ 
+      {% for blog in blogs  %}
+       <div class="col">  
+          <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 18rem; height: 25rem;">
+      
+          {% if blog.Image %}
+            <img src="{{blog.Image.url}}" onerror="this.src='media/img/django.jpg'" class="img-responsive" style="height: 150px;"  alt="post_image">
+          {% endif %}
+            <hr>
+            <div class="card-body">
+                <h5 class="card-title"><a style="text-decoration: none;" href="">{{blog.Title}}</a></h5>
+                <p class="card-text">{{blog.Content}}</p>
+                <p>
+                    <span><i class="bi bi-chat-left" aria-hidden="true"></i> 7</span>
+                    <span><i class="bi bi-eye-fill" aria-hidden="true"></i> 109</span>
+                    <span><i class="bi bi-heart" aria-hidden="true"></i> 8</span>
+                </p>
+                <p class="card-text">
+                  <small>
+                        {{blog.date}}
+                        Posted 3&nbsp;months, 2&nbsp;weeks ago.
+                  </small>
+                </p>
+
+             </div>
+          </div>
+        </div>
+             {% endfor %}
+   </div>
+        
+     
+          
+</div>
+       
+            
     
+  {% endblock content %}
+    
+   
+
+
+  
+ 

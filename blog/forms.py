@@ -1,0 +1,13 @@
+from django.db import models
+from django import forms
+from .models import Blog
+
+class BlogForm(forms.ModelForm):
+
+    class Meta:
+        model=Blog
+        fields="__all__"
+        
+
+
+    
