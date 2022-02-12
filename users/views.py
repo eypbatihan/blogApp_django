@@ -1,8 +1,8 @@
-
 from django.shortcuts import redirect, render
 from .forms import UserForm,ProfileForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.forms import AuthenticationForm
+
 
 # Create your views here.
 
@@ -54,4 +54,3 @@ def profile(request):
         "form_profile":form_profile
     }
     return render(request,"users/profile.html",context) 
- 
