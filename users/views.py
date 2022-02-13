@@ -48,9 +48,15 @@ def user_login(request):
 
 
 def profile(request):
-    form_profile = ProfileForm()
+    user = request.user
+    form = ProfileForm(instance =user)
+    if request.method =="POST":
+        form = UserForm(request.POST,request.FILES,instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect("home")
 
     context = {
-        "form_profile":form_profile
+        "form":form,
     }
     return render(request,"users/profile.html",context) 

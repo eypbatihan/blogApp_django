@@ -1,9 +1,13 @@
-{% extends 'users/base.html' %}
-
-
-
-
-{% block content %}
-    {{ form_profile}}
+{% extends 'users/base.html' %} {% block content %}
+<div class="p-3 mb-2 bg-light text-dark">
+  <div class="mx-auto border" style="width: 80%; padding: 2%">
+    <div class="card shadow p-3 mb-5 bg-white rounded">
+      <img src="{{form.profile_picture.url}}" alt="profile_picture" />
+    </div>
+    <form action="" method="POST" enctype="multipart/form-data">
+      <div>{% csrf_token %} {{form.as_p}}</div>
+      <input class="btn btn-info" type="submit" value="UPDATE" />
+    </form>
+  </div>
+</div>
 {% endblock content %}
-    
