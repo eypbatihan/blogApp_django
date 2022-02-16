@@ -1,13 +1,9 @@
-{% extends 'users/base.html' %}
+{% extends 'base.html' %} {% block content %}
+<div class="p-3 mb-2 bg-light text-dark">
+  <div class="mx-auto border" style="width: 80%; padding: 2%">
+    <h2>You have been logged out</h2>
 
-
-{% block content %}
-    <div class="p-3 mb-2 bg-light text-dark"> 
-      <div class="mx-auto border " style="width: 80%; padding: 2%;">
-        <h2>You have been logged out</h2>
-
-         <a class="text-decoration-none" href="{% url 'login' %}">Login Again</a>
-    </div>
-    </div>
+    <a class="text-decoration-none" href="{% url 'login' %}">Login Again</a>
+  </div>
+</div>
 {% endblock content %}
-    

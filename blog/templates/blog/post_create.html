@@ -1,18 +1,13 @@
-{% extends 'users/base.html' %}
-{% load crispy_forms_tags %}
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block content %}
+<div class="p-3 mb-2 bg-light text-dark">
+  <div class="mx-auto border" style="width: 80%; padding: 2%">
+    <h2>Blog Post</h2>
+    <form action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %} {{ post_form | crispy }} {{post_form.media}}
 
-{% block content %}
-    <div class="p-3 mb-2 bg-light text-dark"> 
-      <div class="mx-auto border " style="width: 80%; padding: 2%;">
-        <h2>Blog Post</h2>
-       <form action="" method="POST" enctype="multipart/form-data">
-    {% csrf_token %} {{ post_form | crispy }} {{post_form.media}}
-
-<br>
-  <button type="submit" class="btn btn-outline-info">Post</button>
-
-</form>
-        </div>
-        </div>
+      <br />
+      <button type="submit" class="btn btn-outline-info">Post</button>
+    </form>
+  </div>
+</div>
 {% endblock content %}
-    

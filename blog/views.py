@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from .models import Blog
-
+import os
 
 from .forms import BlogForm
 
@@ -57,6 +57,7 @@ def post_update(request, id):
 def post_delete(request, id):
     blog = Blog.objects.get(id=id)
     if request.method == "POST":
+        os.remove(blog.Image.path)
         blog.delete()
         return redirect("home")
     return render(request, "blog/post_delete.html", {"blog": blog})
