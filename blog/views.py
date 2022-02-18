@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect, render
-from .models import Blog, Like
+from .models import Blog, Like, PostView
 import os
 
 from .forms import BlogForm, CommentForm
@@ -35,6 +35,10 @@ def post_list(request):
 def post_details(request, id):
     blog = Blog.objects.get(id=id)
     form = CommentForm()
+    if request.user.is_authenticated:
+        view_qs = PostView.objects.filter(user=request.user,post=blog)
+        if not view_qs:
+            PostView.objects.create(user =request.user,post=blog)
     if request.method=='POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -84,4 +88,6 @@ def post_like(request,id):
         else:
             Like.objects.create(user =request.user,post=blog)
         return redirect("details",id=id)
+
+
    

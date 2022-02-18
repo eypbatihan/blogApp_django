@@ -2,7 +2,11 @@
 <div class="p-3 mb-2 bg-light text-dark">
   <div class="mx-auto border" style="width: 80%; padding: 2%">
     <div class="card shadow p-3 mb-5 bg-white rounded">
+      {% if form.profile_picture %}
       <img src="{{form.profile_picture.url}}" alt="profile_picture" />
+      {% else %}
+      <img src="" alt="profile_picture" />
+      {% endif %}
     </div>
     <form action="" method="POST" enctype="multipart/form-data">
       <div>{% csrf_token %} {{form.as_p}}</div>
