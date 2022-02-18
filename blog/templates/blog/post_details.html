@@ -8,7 +8,7 @@
     {% if blog.Image %}
     <img
       src="{{blog.Image.url}}"
-      onerror="this.src='media/img/django.jpg'"
+      onerror="this.src='media/img/django.png'"
       class="img-responsive"
       style="height: 150px"
       alt="post_image"
@@ -24,15 +24,46 @@
       <p class="card-text">{{blog.Content}}</p>
       <p class="d-flex justify-content-between">
         <small>
-          <span><i class="bi bi-chat-left" aria-hidden="true"></i> 7</span>
-          <span><i class="bi bi-eye-fill" aria-hidden="true"></i> 109</span>
-          <span><i class="bi bi-heart" aria-hidden="true"></i> 8</span>
+          <span
+            ><i class="bi bi-chat-left" aria-hidden="true"></i>
+            {{blog.comment_count}}
+          </span>
+          <span
+            ><i class="bi bi-eye-fill" aria-hidden="true"></i>
+            {{blog.postview_count}}
+          </span>
+          <span
+            ><i class="bi bi-heart" aria-hidden="true"></i>
+
+            {{blog.like_count}}
+          </span>
         </small>
         <small> Posted {{blog.date | naturaltime}} </small>
       </p>
 
       <hr />
-      {% if request.user == blog.user %}
+      <form action="{% url 'post_like' blog.id %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" , name="blog" />
+        <input type="hidden" , name="user" />
+        <button type="submit">
+          <i class="bi bi-heart" aria-hidden="true"></i>
+        </button>
+      </form>
+      <hr />
+
+      <form action="" method="post">
+        {% csrf_token %} {{form.as_p}}
+        <button class="btn btn-info">SEND</button>
+      </form>
+      <hr />
+
+      {% for comment in blog.comments %}
+      <h5>by {{comment.user}}</h5>
+      <p>{{comment.content}}</p>
+      <small> Posted {{comment.time_stamp | naturaltime}} </small>
+      <hr />
+      {% endfor %} {% if request.user == blog.user %}
       <a href="{% url 'update' blog.id %}"
         ><button class="btn btn-outline-info">UPDATE</button></a
       >

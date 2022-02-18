@@ -1,8 +1,8 @@
-from django.shortcuts import redirect, render
-from .models import Blog
+from django.shortcuts import get_object_or_404, redirect, render
+from .models import Blog, Like
 import os
 
-from .forms import BlogForm
+from .forms import BlogForm, CommentForm
 
 
 
@@ -34,7 +34,21 @@ def post_list(request):
 
 def post_details(request, id):
     blog = Blog.objects.get(id=id)
-    return render(request, "blog/post_details.html", {"blog": blog})
+    form = CommentForm()
+    if request.method=='POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.post = blog
+            comment.save()
+            return redirect("details",id=id)
+    context = {
+        "blog":blog,
+        "form":form,
+    }
+
+    return render(request, "blog/post_details.html",context)
 
 
 def post_update(request, id):
@@ -43,7 +57,6 @@ def post_update(request, id):
     if request.method == "POST":
         form = BlogForm(request.POST, request.FILES, instance=blog)
         if form.is_valid():
-            form.owner = request.user
             form.save()
             return redirect("home")
 
@@ -57,7 +70,18 @@ def post_update(request, id):
 def post_delete(request, id):
     blog = Blog.objects.get(id=id)
     if request.method == "POST":
-        os.remove(blog.Image.path)
+        # os.remove(blog.Image.path)
         blog.delete()
         return redirect("home")
     return render(request, "blog/post_delete.html", {"blog": blog})
+
+def post_like(request,id):
+    if request.method == "POST":
+        blog = Blog.objects.get(id=id)
+        like_qs = Like.objects.filter(user=request.user,post=blog)
+        if like_qs:
+            like_qs[0].delete()
+        else:
+            Like.objects.create(user =request.user,post=blog)
+        return redirect("details",id=id)
+   

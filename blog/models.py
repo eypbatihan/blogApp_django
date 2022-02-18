@@ -1,5 +1,3 @@
-from email.policy import default
-from tabnanny import verbose
 from django.db import models
 from django.conf import settings
 
@@ -20,15 +18,30 @@ class Blog(models.Model):
     )
     Title = models.CharField(max_length=50)
     Content = models.TextField()
-    Image = models.ImageField(upload_to='img/',default='django.jpg')
+    Image = models.ImageField(upload_to='img/',default='django.png')
     Category = models.ForeignKey(Category,on_delete=models.PROTECT)
     status = models.CharField(
         max_length=10, choices=STATUS_CHOICES, default="Draft")
     date = models.DateTimeField(auto_now_add=True)
+    date_update = models.DateTimeField(auto_now=True)
     user =models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True,null=True, )
     
     def __str__(self):
-        return self.user.first_name
+        return self.Title
+
+    def comment_count(self):
+        return self.comment_set.all().count()
+    
+    def like_count(self):
+        return self.like_set.all().count()
+
+    def postview_count(self):
+        return self.postview_set.all().count()
+
+    def comments(self):
+        return self.comment_set.all()
+
+    
 
 class Comment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)

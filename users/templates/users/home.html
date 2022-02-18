@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %} {% load humanize %}
 <div class="container">
   <h1 class="text-center">BATIHAN BLOG</h1>
-  <div class="row row-cols-3">
+  <div class="row row-cols-3 mt-5">
     {% for blog in blogs %}
     <div class="col">
       <div
@@ -11,7 +11,7 @@
         {% if blog.Image %}
         <img
           src="{{blog.Image.url}}"
-          onerror="this.src='media/img/django.jpg'"
+          onerror="this.src='media/img/django.png'"
           class="img-responsive"
           style="height: 150px"
           alt="post_image"
@@ -27,13 +27,26 @@
           <div class="overflow-hidden" style="height: 5rem">
             <p class="card-text">{{blog.Content}}</p>
           </div>
-          <p>
-            <span><i class="bi bi-chat-left" aria-hidden="true"></i> 7</span>
-            <span><i class="bi bi-eye-fill" aria-hidden="true"></i> 109</span>
-            <span><i class="bi bi-heart" aria-hidden="true"></i> 8</span>
-          </p>
+           <span
+            ><i class="bi bi-chat-left" aria-hidden="true"></i>
+            {{blog.comment_count}}
+          </span>
+          <span
+            ><i class="bi bi-eye-fill" aria-hidden="true"></i>
+            {{blog.postview_count}}
+          </span>
+          <span
+            ><i class="bi bi-heart" aria-hidden="true"></i>{{blog.like_count}}
+          </span>
+        </small>
+        <small> Posted {{blog.date | naturaltime}} </small>
+      </p>
           <p class="card-text">
+            {% if blog.date == blog.date_update %}
             <small> Posted {{blog.date | naturaltime}}</small>
+            {% else %}
+            <small> Updated {{blog.date_update | naturaltime}}</small>
+            {% endif %}
           </p>
         </div>
       </div>
