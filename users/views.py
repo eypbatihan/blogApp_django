@@ -58,5 +58,6 @@ def profile(request):
 
     context = {
         "form":form,
+        "user":user,
     }
     return render(request,"users/profile.html",context) 

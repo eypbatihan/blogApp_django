@@ -18,7 +18,7 @@ class Blog(models.Model):
     )
     Title = models.CharField(max_length=50)
     Content = models.TextField()
-    Image = models.ImageField(upload_to='img/',default='django.png')
+    Image = models.ImageField(upload_to='img/', blank=True)
     Category = models.ForeignKey(Category,on_delete=models.PROTECT)
     status = models.CharField(
         max_length=10, choices=STATUS_CHOICES, default="Draft")

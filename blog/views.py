@@ -80,14 +80,15 @@ def post_delete(request, id):
     return render(request, "blog/post_delete.html", {"blog": blog})
 
 def post_like(request,id):
-    if request.method == "POST":
-        blog = Blog.objects.get(id=id)
-        like_qs = Like.objects.filter(user=request.user,post=blog)
-        if like_qs:
-            like_qs[0].delete()
-        else:
-            Like.objects.create(user =request.user,post=blog)
-        return redirect("details",id=id)
+     if request.user.is_authenticated:
+         if request.method == "POST":
+             blog = Blog.objects.get(id=id)
+             like_qs = Like.objects.filter(user=request.user,post=blog)
+             if like_qs:
+                like_qs[0].delete()
+             else:
+                Like.objects.create(user =request.user,post=blog)
+     return redirect("details",id=id)
 
 
    

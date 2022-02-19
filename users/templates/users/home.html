@@ -11,11 +11,12 @@
         {% if blog.Image %}
         <img
           src="{{blog.Image.url}}"
-          onerror="this.src='media/img/django.png'"
           class="img-responsive"
           style="height: 150px"
           alt="post_image"
         />
+        {% else %}
+        <img src="../../../media/img/django.png" alt="default_image">
         {% endif %}
         <hr />
         <div class="card-body">
