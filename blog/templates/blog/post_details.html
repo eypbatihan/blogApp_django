@@ -3,7 +3,7 @@
 <div class="d-flex justify-content-center">
   <div
     class="card shadow p-3 mb-5 bg-white rounded"
-    style="width: 22rem; height: 30rem; margin-top: 1rem"
+    style="width: 30rem; margin-top: 1rem"
   >
     {% if blog.Image %}
     <img
@@ -47,6 +47,7 @@
         {% csrf_token %}
         <input type="hidden" , name="blog" />
         <input type="hidden" , name="user" />
+
         <button type="submit">
           <i class="bi bi-heart" aria-hidden="true"></i>
         </button>
@@ -57,14 +58,19 @@
         {% csrf_token %} {{form.as_p}}
         <button class="btn btn-info">SEND</button>
       </form>
-      <hr />
+      <div class="overflow-scroll" style="height: 100px">
+        {% for comment in blog.comments %}
+        <div class="card p-2 mt-1 shadow">
+          <small class="d-flex justify-content-between">
+            <small>by <strong> {{comment.user}}</strong></small>
+            <small> Posted {{comment.time_stamp | naturaltime}} </small>
+          </small>
+          <p>{{comment.content}}</p>
+        </div>
 
-      {% for comment in blog.comments %}
-      <h5>by {{comment.user}}</h5>
-      <p>{{comment.content}}</p>
-      <small> Posted {{comment.time_stamp | naturaltime}} </small>
+        {% endfor %} {% if request.user == blog.user %}
+      </div>
       <hr />
-      {% endfor %} {% if request.user == blog.user %}
       <a href="{% url 'update' blog.id %}"
         ><button class="btn btn-outline-info">UPDATE</button></a
       >

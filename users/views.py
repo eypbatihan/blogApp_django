@@ -51,9 +51,10 @@ def profile(request):
     user = request.user
     form = ProfileForm(instance =user)
     if request.method =="POST":
-        form = UserForm(request.POST,request.FILES,instance=user)
+        form = ProfileForm(request.POST,request.FILES,instance=user)
         if form.is_valid():
             form.save()
+            login(request,user)
             return redirect("home")
 
     context = {

@@ -40,6 +40,9 @@ class Blog(models.Model):
 
     def comments(self):
         return self.comment_set.all()
+    
+    class Meta:
+        ordering = ['-date_update',]
 
     
 
@@ -49,6 +52,11 @@ class Comment(models.Model):
     time_stamp = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
 
+
+    class Meta:
+        ordering = ['-time_stamp',]
+       
+    
 class Like(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     post = models.ForeignKey(Blog,on_delete=models.CASCADE)
