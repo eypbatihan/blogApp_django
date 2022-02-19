@@ -26,15 +26,15 @@
       <p class="d-flex justify-content-between">
         <small>
           <span
-            ><i class="bi bi-chat-left" aria-hidden="true"></i>
+            ><i class="bi bi-chat-left p-1" aria-hidden="true"></i>
             {{blog.comment_count}}
           </span>
           <span
-            ><i class="bi bi-eye-fill" aria-hidden="true"></i>
+            ><i class="bi bi-eye-fill p-1" aria-hidden="true"></i>
             {{blog.postview_count}}
           </span>
           <span
-            ><i class="bi bi-heart" aria-hidden="true"></i>
+            ><i class="bi bi-heart p-1" aria-hidden="true"></i>
 
             {{blog.like_count}}
           </span>
@@ -58,7 +58,7 @@
         {% csrf_token %} {{form.as_p}}
         <button class="btn btn-info">SEND</button>
       </form>
-      <div class="overflow-scroll" style="height: 100px">
+      <div class="overflow-auto" style="height: 100px">
         {% for comment in blog.comments %}
         <div class="card p-2 mt-1 shadow">
           <small class="d-flex justify-content-between">

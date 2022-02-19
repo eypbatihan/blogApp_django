@@ -6,7 +6,7 @@
     <div class="col">
       <div
         class="card shadow p-3 mb-5 bg-white rounded"
-        style="width: 18rem; height: 30rem"
+        style="width: 18rem; height: 30rem; "
       >
         {% if blog.Image %}
         <img
@@ -29,18 +29,18 @@
             <p class="card-text">{{blog.Content}}</p>
           </div>
            <span
-            ><i class="bi bi-chat-left" aria-hidden="true"></i>
+            ><i class="bi bi-chat-left p-1" aria-hidden="true"></i>
             {{blog.comment_count}}
           </span>
           <span
-            ><i class="bi bi-eye-fill" aria-hidden="true"></i>
+            ><i class="bi bi-eye-fill p-1" aria-hidden="true"></i>
             {{blog.postview_count}}
           </span>
           <span
-            ><i class="bi bi-heart" aria-hidden="true"></i>{{blog.like_count}}
+            ><i class="bi bi-heart p-1" aria-hidden="true"></i>{{blog.like_count}}
           </span>
         </small>
-        <small> Posted {{blog.date | naturaltime}} </small>
+     
       </p>
           <p class="card-text">
             {% if blog.date == blog.date_update %}

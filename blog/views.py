@@ -74,7 +74,8 @@ def post_update(request, id):
 def post_delete(request, id):
     blog = Blog.objects.get(id=id)
     if request.method == "POST":
-        # os.remove(blog.Image.path)
+        if blog.Image:
+            blog.Image.delete()
         blog.delete()
         return redirect("home")
     return render(request, "blog/post_delete.html", {"blog": blog})
