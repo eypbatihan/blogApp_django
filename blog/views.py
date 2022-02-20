@@ -39,14 +39,14 @@ def post_details(request, id):
         view_qs = PostView.objects.filter(user=request.user,post=blog)
         if not view_qs:
             PostView.objects.create(user =request.user,post=blog)
-    if request.method=='POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.user = request.user
-            comment.post = blog
-            comment.save()
-            return redirect("details",id=id)
+        if request.method=='POST':
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                comment = form.save(commit=False)
+                comment.user = request.user
+                comment.post = blog
+                comment.save()
+                return redirect("details",id=id)
     context = {
         "blog":blog,
         "form":form,
