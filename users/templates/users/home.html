@@ -1,12 +1,13 @@
 {% extends 'base.html' %} {% block content %} {% load humanize %}
-<div class="container">
-  <h1 class="text-center">BATIHAN BLOG</h1>
+<div class="container" >
+  <h1 class="text-center">Batıhan Blog</h1>
   <div class="row row-cols-3 mt-5">
     {% for blog in blogs %}
     <div class="col">
       <div
-        class="card shadow p-3 mb-5 bg-white rounded"
-        style="width: 18rem; height: 30rem; "
+        class="card1 shadow p-3 mb-5 bg-white rounded"
+        style="width: 18rem; height: 30rem; box-shadow: 2px 5px 3px gray;  "
+        
       >
         {% if blog.Image %}
         <img
@@ -21,11 +22,11 @@
         <hr />
         <div class="card-body">
           <h5 class="card-title">
-            <a style="text-decoration: none" href="{% url 'details' blog.id %}"
-              >{{blog.Title}} {{blog.user}}
+            <a style="text-decoration: none; color: darkgoldenrod;" href="{% url 'details' blog.id %}"
+              >{{blog.Title}} <small>by {{blog.user}} </small> 
             </a>
           </h5>
-          <div class="overflow-hidden" style="height: 5rem">
+          <div class="content" >
             <p class="card-text">{{blog.Content}}</p>
           </div>
            <span

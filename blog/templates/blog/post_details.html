@@ -58,7 +58,7 @@
         {% csrf_token %} {{form.as_p}}
         <button class="btn btn-info">SEND</button>
       </form>
-      <div class="overflow-auto" style="height: 100px">
+      <div class="comment">
         {% for comment in blog.comments %}
         <div class="card p-2 mt-1 shadow">
           <small class="d-flex justify-content-between">

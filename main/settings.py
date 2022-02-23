@@ -128,8 +128,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Extra places for collectstatic to find static files.
 
-ROOT_PATH = os.path.dirname(__file__)
-STATICFILES_DIRS = [os.path.join(ROOT_PATH, 'static')]
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
 
 
 # Default primary key field type

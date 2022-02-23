@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&family=Girassol&family=IM+Fell+English+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&family=Cutive+Mono&family=Girassol&family=IM+Fell+English+SC&display=swap');
+
+
+
+
+
+
+.base{
+    padding-top: 5rem;
+    background-color: antiquewhite;
+    min-height: 100vh;
+}
+.card1{
+   background-color:hsla(99, 75%, 75%, 1);
+}
+
+.card {
+    background-color: hsla(99, 75%, 75%, 1);
+}
+
+h5{
+   font-family: 'IM Fell English SC',
+   serif;
+   
+}
+
+.text-center{
+     font-family: 'IM Fell English SC',
+     serif;
+}
+.navbar {
+    font-family: 'IM Fell English SC',
+        serif;
+    font-size: larger;
+}
+.content{
+    height: 6rem;
+    overflow: hidden;
+
+}
+
+
+.card1:hover{
+    transform: scale(1.1);
+    transition: transform .3s;
+}
+
+.comment {
+    height: 6rem;
+    overflow: auto;
+}
